@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DVD購入希望フォームを作るGAS</title>
+<style>body{margin:0;background:#f2f9fe;color:#2b3a55;font-family:sans-serif}.w{max-width:900px;margin:0 auto;padding:20px 16px}h1{font-size:20px;color:#16306a}p{font-size:14px;line-height:1.8}pre{background:#fff;border:1px solid #e1e8f0;border-radius:6px;padding:12px;overflow-x:auto;font-size:13px;line-height:1.6}a{color:#0c4ea8}</style></head>
+<body><div class="w"><h1>DVD購入希望フォームを作るGAS</h1><p>script.google.com の新しいプロジェクトに全部貼り付けて「実行」すると、Googleフォームと回答用スプレッドシートができます。 <a href="../">← 作品集にもどる</a></p><pre>/**
+ * ファイナルコンサート DVD・ブルーレイ購入希望フォームを作る
+ *
+ * 使い方：
+ *  1. https://script.google.com/ で「新しいプロジェクト」を開く
+ *  2. この中身を全部貼り付けて保存
+ *  3. 関数 createDvdForm を選んで「実行」→ 権限を許可
+ *  4. 「実行ログ」に出る 回答用URL を、張り紙のQRに使う
+ *     （フォームと回答スプレッドシートはマイドライブにできます）
+ */
+function createDvdForm() {
+  const form = FormApp.create(&#x27;ファイナルコンサート DVD・ブルーレイ 購入希望&#x27;);
+  form.setDescription(
+    &#x27;登別中学校吹奏楽部 ファイナルコンサート（2026年10月18日）の記録映像を販売します。\n&#x27; +
+    &#x27;\n&#x27; +
+    &#x27;■ 価格：1枚 2,000円（DVD・ブルーレイとも）\n&#x27; +
+    &#x27;■ 受け取り：学校に取りに来る　または　郵送（レターパックライト）\n&#x27; +
+    &#x27;\n&#x27; +
+    &#x27;【お支払い】\n&#x27; +
+    &#x27;購入希望の方は、代金を現金で【10月18日中】に顧問の三浦までお支払いください。&#x27;
+  );
+  form.setConfirmationMessage(
+    &#x27;ご回答ありがとうございました。\n&#x27; +
+    &#x27;代金は現金で【10月18日中】に顧問の三浦までお支払いください。&#x27;
+  );
+  form.setProgressBar(false);
+
+  // 1ページ目：基本情報
+  form.addTextItem().setTitle(&#x27;氏名&#x27;).setRequired(true);
+
+  form.addTextItem()
+    .setTitle(&#x27;メールアドレス&#x27;)
+    .setHelpText(&#x27;発送や受け渡しのご連絡に使います。&#x27;)
+    .setRequired(true)
+    .setValidation(FormApp.createTextValidation()
+      .requireTextIsEmail()
+      .setHelpText(&#x27;メールアドレスの形で入力してください。&#x27;)
+      .build());
+
+  form.addGridItem()
+    .setTitle(&#x27;購入希望（枚数）&#x27;)
+    .setHelpText(&#x27;DVD・ブルーレイそれぞれの枚数を選んでください。片方だけの場合は、もう片方を「0枚」にしてください。&#x27;)
+    .setRows([&#x27;DVD&#x27;, &#x27;ブルーレイ&#x27;])
+    .setColumns([&#x27;0枚&#x27;, &#x27;1枚&#x27;, &#x27;2枚&#x27;, &#x27;3枚&#x27;, &#x27;4枚&#x27;, &#x27;5枚&#x27;])
+    .setRequired(true);
+
+  const receive = form.addMultipleChoiceItem()
+    .setTitle(&#x27;受け取り方法&#x27;)
+    .setRequired(true);
+
+  // 2ページ目：郵送の人だけ
+  const mailPage = form.addPageBreakItem()
+    .setTitle(&#x27;郵送先&#x27;)
+    .setHelpText(&#x27;レターパックライトでお送りします。&#x27;);
+  form.addTextItem().setTitle(&#x27;郵便番号&#x27;).setHelpText(&#x27;例：123-4567&#x27;).setRequired(true);
+  form.addParagraphTextItem().setTitle(&#x27;住所&#x27;).setHelpText(&#x27;都道府県からマンション名・部屋番号まで&#x27;).setRequired(true);
+
+  // 受け取り方法で行き先を分ける（学校受け取り → そのまま送信）
+  receive.setChoices([
+    receive.createChoice(&#x27;学校に取りに来る&#x27;, FormApp.PageNavigationType.SUBMIT),
+    receive.createChoice(&#x27;郵送&#x27;, mailPage),
+  ]);
+
+  // 回答をスプレッドシートにまとめる
+  const ss = SpreadsheetApp.create(&#x27;ファイナルコンサート DVD・ブルーレイ 購入希望（回答）&#x27;);
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
+
+  Logger.log(&#x27;回答用URL（QRに使う）: &#x27; + form.shortenFormUrl(form.getPublishedUrl()));
+  Logger.log(&#x27;編集用URL: &#x27; + form.getEditUrl());
+  Logger.log(&#x27;回答スプレッドシート: &#x27; + ss.getUrl());
+}
+</pre></div></body></html>

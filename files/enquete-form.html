@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>アンケートフォームを作るGAS</title>
+<style>body{margin:0;background:#f2f9fe;color:#2b3a55;font-family:sans-serif}.w{max-width:900px;margin:0 auto;padding:20px 16px}h1{font-size:20px;color:#16306a}p{font-size:14px;line-height:1.8}pre{background:#fff;border:1px solid #e1e8f0;border-radius:6px;padding:12px;overflow-x:auto;font-size:13px;line-height:1.6}a{color:#0c4ea8}</style></head>
+<body><div class="w"><h1>アンケートフォームを作るGAS</h1><p>script.google.com の新しいプロジェクトに全部貼り付けて「実行」すると、Googleフォームと回答用スプレッドシートができます。 <a href="../">← 作品集にもどる</a></p><pre>/**
+ * 登別中学校 ファイナルコンサート（第32回定期演奏会）アンケート
+ * Googleフォームを作るスクリプト
+ *
+ * 使い方
+ *  1. https://script.google.com/ を開き「新しいプロジェクト」
+ *  2. 最初からあるコードを全部消して、このファイルの中身を貼り付けて保存
+ *  3. 上の関数選択で「createForm」を選んで「実行」
+ *     （初回は権限の確認が出ます →「詳細」→「〜に移動」→「許可」）
+ *  4. 下の「実行ログ」に出る「回答用URL（短縮）」を、アンケート用紙の index.html に貼る
+ *
+ * フォームと回答用スプレッドシートは、マイドライブの一番上にできます。
+ */
+
+const TITLE = &#x27;登別中学校 ファイナルコンサート（第32回定期演奏会）アンケート&#x27;;
+
+const SONGS_1 = [
+  &#x27;いつか王子様が（2・3年生6名のアンサンブル）&#x27;,
+  &#x27;ピースサイン&#x27;,
+  &#x27;糸&#x27;,
+  &#x27;情熱大陸&#x27;,
+  &#x27;ハンガリーの歌と民謡による組曲「子供のために」&#x27;,
+];
+
+const SONGS_2 = [
+  &#x27;愛するデューク&#x27;,
+  &#x27;Paradise Has No Border（指揮：渡會 大輔 先生）&#x27;,
+  &#x27;ディスコ・パーティー（指揮：佐土 登志男 先生）&#x27;,
+  &#x27;未来予想図Ⅱ（指揮：小林 聡子 先生）&#x27;,
+  &#x27;詩的なアリア（ホルン独奏：伊勢 久視 さん）&#x27;,
+  &#x27;オーメンズ・オブ・ラブ&#x27;,
+];
+
+function createForm() {
+  const form = FormApp.create(TITLE);
+  form.setDescription(
+    &#x27;登別中学校として最後の定期演奏会にご来場いただき、ありがとうございました。\n&#x27; +
+    &#x27;32回の歴史を締めくくるこの日に、皆さまのお声をお聞かせください。いただいた言葉は、部員一人ひとりに届けます。\n\n&#x27; +
+    &#x27;※ いただいたメッセージは、お名前を伏せて部員やOB・OGに紹介させていただくことがあります。&#x27;
+  );
+  form.setCollectEmail(false);
+  form.setLimitOneResponsePerUser(false); // ログインなしで答えられるように
+  form.setProgressBar(false);
+  form.setConfirmationMessage(&#x27;ご回答ありがとうございました。32年分の感謝を込めて。登別中学校吹奏楽部&#x27;);
+
+  // ① 心に残った曲
+  form.addSectionHeaderItem()
+    .setTitle(&#x27;① 心に残った曲はどれですか？&#x27;)
+    .setHelpText(&#x27;いくつでも選んでください。&#x27;);
+  form.addCheckboxItem()
+    .setTitle(&#x27;【第1部】現役生ステージ&#x27;)
+    .setChoiceValues(SONGS_1);
+  form.addCheckboxItem()
+    .setTitle(&#x27;【第2部】OB・OGとの共演ステージ&#x27;)
+    .setChoiceValues(SONGS_2);
+
+  // ② 本校との関わり
+  form.addMultipleChoiceItem()
+    .setTitle(&#x27;② 本校との関わりを教えてください。&#x27;)
+    .setChoiceValues([
+      &#x27;在校生&#x27;,
+      &#x27;保護者&#x27;,
+      &#x27;卒業生（吹奏楽部OB・OG）&#x27;,
+      &#x27;卒業生（吹奏楽部以外）&#x27;,
+      &#x27;地域の方（校区）&#x27;,
+      &#x27;地域の方（校区外）&#x27;,
+      &#x27;教職員・元教職員&#x27;,
+    ])
+    .showOtherOption(true);
+
+  // ③ 来場回数
+  form.addMultipleChoiceItem()
+    .setTitle(&#x27;③ 登別中の定期演奏会に来られたのは何回目ですか？&#x27;)
+    .setChoiceValues([&#x27;今回がはじめて&#x27;, &#x27;2〜4回目&#x27;, &#x27;5回以上&#x27;, &#x27;数えきれないほど&#x27;]);
+
+  // ④ 知ったきっかけ
+  form.addCheckboxItem()
+    .setTitle(&#x27;④ 今日のコンサートをどのように知りましたか？&#x27;)
+    .setHelpText(&#x27;いくつでも選んでください。&#x27;)
+    .setChoiceValues([&#x27;学校からの案内&#x27;, &#x27;ポスター&#x27;, &#x27;知り合いから&#x27;, &#x27;ホームページ・SNS&#x27;])
+    .showOtherOption(true);
+
+  // ⑤ メッセージ
+  form.addParagraphTextItem()
+    .setTitle(&#x27;⑤ 部員・OB・OG・先生方へのメッセージをお願いします。&#x27;)
+    .setHelpText(&#x27;今日の演奏の感想や、これまでの登別中吹奏楽部の思い出も、ぜひお聞かせください。&#x27;);
+
+  // 回答用スプレッドシート
+  const ss = SpreadsheetApp.create(TITLE + &#x27;（回答）&#x27;);
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
+
+  const url = form.getPublishedUrl();
+  let shortUrl = url;
+  try { shortUrl = form.shortenFormUrl(url); } catch (e) {}
+
+  Logger.log(&#x27;回答用URL（短縮）: &#x27; + shortUrl);
+  Logger.log(&#x27;回答用URL: &#x27; + url);
+  Logger.log(&#x27;フォームの編集画面: &#x27; + form.getEditUrl());
+  Logger.log(&#x27;回答のスプレッドシート: &#x27; + ss.getUrl());
+}
+</pre></div></body></html>

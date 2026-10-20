@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>定演×AI 作品集｜ファイナルコンサート</title>
+<meta name="description" content="登別中学校吹奏楽部 ファイナルコンサート（令和8年10月18日）の準備でAIと一緒に作ったものの一覧です。" />
+<meta property="og:title" content="定演×AI 作品集｜ファイナルコンサート" />
+<meta property="og:description" content="一つのイベントにどれだけAIが絡んだのか。進行表・OBOGページ・ポスター・フォームなど、準備で作ったものをまとめました。" />
+<meta property="og:image" content="https://choppermoon1623-tech.github.io/final-concert-works/thumbs/poster.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sky: #d7ecfa;
+    --white: #ffffff;
+    --navy: #16306a;
+    --ink: #2b3a55;
+    --sub: #5d6b82;
+    --line: #e1e8f0;
+    --blue: #1f6fd6;
+    --blue-dk: #0c4ea8;
+    --gold: #b8860b;
+    --gold-lt: #e8b93a;
+    --gold-pale: #fff4d6;
+    --leaf: #7cbf3c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: linear-gradient(180deg, #bfe2f8 0%, var(--sky) 40%, #eaf5fc 100%) fixed; color: var(--ink); font-family: 'Zen Kaku Gothic New', sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2 { margin: 0; font-family: 'Shippori Mincho B1', serif; color: var(--navy); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 16px 48px; }
+  header { text-align: center; margin-bottom: 26px; }
+  .kicker { font-size: 13px; letter-spacing: .3em; color: var(--gold); font-weight: 700; }
+  h1 { font-size: clamp(26px, 6vw, 40px); font-weight: 800; letter-spacing: .06em; margin: 6px 0 10px; }
+  .lead { font-size: 15px; line-height: 1.9; color: var(--sub); max-width: 640px; margin: 0 auto; }
+  .lead b { color: var(--navy); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+  .card { background: var(--white); border-radius: 10px; box-shadow: 0 4px 16px rgba(22,48,106,.12); overflow: hidden; display: flex; flex-direction: column; }
+  .thumb { display: block; aspect-ratio: 4 / 3; background: #f2f6fa; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform .25s; }
+  .thumb:hover img { transform: scale(1.03); }
+  .body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
+  .no { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: .1em; }
+  h2 { font-size: 19px; margin: 2px 0 8px; }
+  .body p { margin: 0 0 10px; font-size: 14px; line-height: 1.75; }
+  .who { font-size: 13px; line-height: 1.7; background: var(--gold-pale); border-left: 3px solid var(--gold-lt); padding: 6px 10px; margin-bottom: 12px; }
+  .who b { color: var(--navy); }
+  .btns { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 999px; font-size: 14px; font-weight: 700; text-decoration: none; color: var(--white); background: var(--blue); }
+  .btn:hover { background: var(--blue-dk); }
+  .btn.sub { background: var(--white); color: var(--blue-dk); border: 1.5px solid var(--blue); }
+  .bgstrip { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 10px; }
+  .bgstrip a { flex: none; }
+  .bgstrip img { height: 92px; border: 1px solid var(--line); border-radius: 3px; display: block; }
+  footer { text-align: center; font-size: 13px; color: var(--sub); line-height: 1.9; margin-top: 30px; }
+  footer a { color: var(--blue-dk); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">FINAL CONCERT × AI</div>
+    <h1>定演×AI 作品集</h1>
+    <p class="lead">登別中学校吹奏楽部 ファイナルコンサート（第32回定期演奏会・令和8年10月18日）の準備で、<b>AIと一緒に作ったもの</b>を並べました。<br>どれも、作ったあとに人が読んで、直して、使っています。</p>
+  </header>
+
+  <div class="grid">
+
+    <article class="card">
+      <a class="thumb" href="files/shinkouhyou.pdf"><img src="thumbs/shinkouhyou.jpg" alt="進行表の1ページ目" loading="lazy"></a>
+      <div class="body">
+        <div class="no">01 ／ 今回のメイン</div>
+        <h2>進行表（全9ページ）</h2>
+        <p>当日の流れ・曲目と指揮者・係分担に加えて、影アナ原稿と司会原稿まで1冊に。</p>
+        <div class="who"><b>AI：</b>対話しながらまとめ、別のAIが採点（80→89→96→97点）<br><b>人：</b>何度もダメ出しして仕上げ</div>
+        <div class="btns"><a class="btn" href="files/shinkouhyou.pdf">PDFを見る</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="https://choppermoon1623-tech.github.io/final-concert/"><img src="thumbs/obog-page.jpg" alt="OBOG専用ページ" loading="lazy"></a>
+      <div class="body">
+        <div class="no">02</div>
+        <h2>OBOG専用ページ</h2>
+        <p>練習日程・曲目・参考音源をまとめたページ。グループLINEからここへ案内しました。</p>
+        <div class="who"><b>AI：</b>ページを作成。「参加人数増えたから直しておいて」の一言で更新<br><b>人：</b>中身の確認と告知</div>
+        <div class="btns"><a class="btn" href="https://choppermoon1623-tech.github.io/final-concert/">ページを開く</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="https://choppermoon1623-tech.github.io/final-concert-genekisei/"><img src="thumbs/genekisei-page.jpg" alt="現役生ページ" loading="lazy"></a>
+      <div class="body">
+        <div class="no">03</div>
+        <h2>現役生ページ</h2>
+        <p>第1部の曲目と参考音源、本番までのカウントダウン。OBOG用とは分けて作りました。</p>
+        <div class="who"><b>AI：</b>OBOGページの見た目を引き継いで作成<br><b>人：</b>載せる・載せないの線引き</div>
+        <div class="btns"><a class="btn" href="https://choppermoon1623-tech.github.io/final-concert-genekisei/">ページを開く</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="files/obog-shiori.pdf"><img src="thumbs/obog-shiori.jpg" alt="OBOG参加のしおり" loading="lazy"></a>
+      <div class="body">
+        <div class="no">04</div>
+        <h2>OB・OG参加のしおり</h2>
+        <p>当日の集合・控室・合同ステージの流れを、OBOG向けに2ページにまとめたもの。</p>
+        <div class="who"><b>AI：</b>OBOG向けに作成<br><b>人：</b>確認と配布</div>
+        <div class="btns"><a class="btn" href="files/obog-shiori.pdf">PDFを見る</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="https://choppermoon1623-tech.github.io/final-concert/poster.pdf"><img src="thumbs/poster.jpg" alt="ポスター" loading="lazy"></a>
+      <div class="body">
+        <div class="no">05</div>
+        <h2>ポスター</h2>
+        <p>デザインはAI。ただし顔はAIを通すと微妙に変わるので、写真はトリミングと合成だけにとどめました。</p>
+        <div class="who"><b>AI：</b>図案の生成と写真の合成<br><b>人：</b>写真は本物のまま</div>
+        <div class="btns"><a class="btn" href="https://choppermoon1623-tech.github.io/final-concert/poster.pdf">PDFを見る</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="thumbs/backgrounds.jpg"><img src="thumbs/backgrounds.jpg" alt="パンフレットの背景10枚" loading="lazy"></a>
+      <div class="body">
+        <div class="no">06</div>
+        <h2>パンフレットの背景</h2>
+        <p>ポスターの青空・若葉・金の音符に合わせて、ページごとの背景を一括で生成。</p>
+        <div class="bgstrip">
+          <a href="bg/page-02.jpg"><img src="bg/page-02.jpg" alt="背景2" loading="lazy"></a>
+          <a href="bg/page-03.jpg"><img src="bg/page-03.jpg" alt="背景3" loading="lazy"></a>
+          <a href="bg/page-05.jpg"><img src="bg/page-05.jpg" alt="背景5" loading="lazy"></a>
+          <a href="bg/page-07.jpg"><img src="bg/page-07.jpg" alt="背景7" loading="lazy"></a>
+          <a href="bg/page-10.jpg"><img src="bg/page-10.jpg" alt="背景10" loading="lazy"></a>
+        </div>
+        <div class="who"><b>AI：</b>背景画像10枚<br><b>人：</b>パンフレット本体はほぼ人力（立中先生）</div>
+        <div class="btns"><a class="btn" href="thumbs/backgrounds.jpg">一覧を見る</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="files/dvd-harigami.pdf"><img src="thumbs/dvd-harigami.jpg" alt="DVD販売の張り紙" loading="lazy"></a>
+      <div class="body">
+        <div class="no">07</div>
+        <h2>DVD販売のとりまとめ</h2>
+        <p>購入希望のGoogleフォームを、GAS（プログラム）で自動作成。QR付きの張り紙も。</p>
+        <div class="who"><b>AI：</b>GASを書く・張り紙を作る<br><b>人：</b>GASを貼り付けて「実行」を押すだけ</div>
+        <div class="btns"><a class="btn" href="files/dvd-harigami.pdf">張り紙PDF</a><a class="btn sub" href="files/dvd-form.html">GASを見る</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="files/enquete.pdf"><img src="thumbs/enquete.jpg" alt="アンケート用紙" loading="lazy"></a>
+      <div class="body">
+        <div class="no">08</div>
+        <h2>アンケート用紙＋フォーム</h2>
+        <p>紙でもQRからでも答えられるアンケート。Googleフォームは同じくGASで作成。</p>
+        <div class="who"><b>AI：</b>用紙のレイアウトとGAS<br><b>人：</b>質問の中身を決める</div>
+        <div class="btns"><a class="btn" href="files/enquete.pdf">用紙PDF</a><a class="btn sub" href="files/enquete-form.html">GASを見る</a></div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    登別中学校 教務主任 三浦 ／ AI通信「AIの回し者」第107号の作品集<br>
+    <a href="https://choppermoon1623-tech.github.io/ai-mawashimono/">AIの回し者 バックナンバー</a>
+  </footer>
+</div>
+</body>
+</html>
